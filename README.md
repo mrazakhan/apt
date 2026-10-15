@@ -16,3 +16,18 @@ External papers and systems that influence APT are tracked under [docs/research_
 - **Architecture/tutorial docs** record what APT has actually adopted.
 
 See [Project Vision](docs/00_project_vision.md).
+
+## Guided implementation tutorial
+
+APT is being built **chapter by chapter** as an RL/post-training learning project.
+
+- [Chapter 04 — Representing a Post-Training Experiment](docs/04_experiment_representation.md): SFT vs GRPO, provenance-aware metrics, held-out evaluations, checkpoint lineage and executable validation tests.
+
+Start with:
+
+```bash
+uv sync --extra dev
+uv run pytest -q
+```
+
+**Migration status:** The earlier Fleet/ATIF/Harbor baseline is still pending migration. The present implementation is a minimal independent foundation; it does not replace the existing trajectory processing code. See the tutorial for boundaries and exercises.
