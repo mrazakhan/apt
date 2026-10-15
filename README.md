@@ -42,3 +42,7 @@ Start with the [connected learning roadmap](docs/03_connected_curriculum.md), th
 The first planned training lab is TRL SFTTrainer with prompt-completion loss masking and held-out task evaluation. The first multi-step agentic GRPO experiment is gated on a validated Harbor-to-training rollout interface.
 
 **Status:** Chapter 04 evidence models and tests committed; downstream training labs, Harbor integration, and the earlier Fleet/ATIF baseline migration remain pending. Run \`uv sync --extra dev && uv run pytest -q\` locally; CI/test execution has not been independently confirmed.
+
+
+### Interactive Colab labs
+Start with [Lab 01: GRPO ratio clipping and gradient diagnostics](notebooks/01_grpo_clipping_diagnostics.ipynb) ([Open in Colab](https://colab.research.google.com/github/mrazakhan/apt/blob/main/notebooks/01_grpo_clipping_diagnostics.ipynb)). The notebook has student TODOs, autograd measurements, checks, a report artifact, and a reference solution. Later labs will pair real TRL trainer code with diagnostic tests.
