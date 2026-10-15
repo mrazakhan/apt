@@ -65,3 +65,9 @@ Each lab follows:
 **Important correction:** A toy ratio-gradient demonstration cannot establish that clipping caused a real held-out regression. Record its status as a verified mechanism in a controlled toy experiment, not a proven production root cause.
 
 The immediate first *real trainer* exercise remains TRL SFTTrainer; it will incorporate masking/gradient diagnostics in the same chapter instead of deferring them.
+
+
+## Notebook delivery format
+**Colab-first:** Each implemented lab is a versioned \`.ipynb\` file in \`notebooks/\` with small markdown explanations, student TODO code cells, checks, research prompts, and an output artifact. Python tests and reusable diagnostic modules remain in \`tests/\` and \`src/\` respectively. Each notebook should link its prerequisite notebook and save a structured experiment report; no claims of successful execution without actual logs.
+
+**First committed Colab:** [GRPO clipping diagnostic lab](../notebooks/01_grpo_clipping_diagnostics.ipynb). This is a controlled mathematical experiment; SFTTrainer and real GRPO training labs remain planned.
