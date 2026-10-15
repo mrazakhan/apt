@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "autonomous-posttraining-engineer"
+version = "0.1.0"
+description = "Evidence-grounded diagnostics for SFT and GRPO post-training"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.7,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/posttraining_engineer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
