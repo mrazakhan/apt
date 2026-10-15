@@ -31,3 +31,14 @@ uv run pytest -q
 ```
 
 **Migration status:** The earlier Fleet/ATIF/Harbor baseline is still pending migration. The present implementation is a minimal independent foundation; it does not replace the existing trajectory processing code. See the tutorial for boundaries and exercises.
+
+
+## Connected training curriculum (SFT → GRPO → coding-agent diagnostics)
+
+Start with the [connected learning roadmap](docs/03_connected_curriculum.md), then [Chapter 04](docs/04_experiment_representation.md). Follow-up labs deliberately reuse each other's artifacts, beginning with real TRL SFTTrainer training before GRPO.
+
+[Repo2RLEnv integration contract](docs/05_repo2rlenv_integration_plan.md) describes how verifiable coding tasks, Harbor rollout execution, TRL training, and APT diagnostics fit together; it is a plan, **not an implemented bridge**.
+
+The first planned training lab is TRL SFTTrainer with prompt-completion loss masking and held-out task evaluation. The first multi-step agentic GRPO experiment is gated on a validated Harbor-to-training rollout interface.
+
+**Status:** Chapter 04 evidence models and tests committed; downstream training labs, Harbor integration, and the earlier Fleet/ATIF baseline migration remain pending. Run \`uv sync --extra dev && uv run pytest -q\` locally; CI/test execution has not been independently confirmed.
