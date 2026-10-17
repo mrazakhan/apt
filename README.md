@@ -13,6 +13,17 @@ APT is a **hands-on research and coding curriculum** that incrementally builds a
 
 **Teaching contract:** For each lab, understand the math, implement important code yourself, generate *your own* diagnostic plots from supplied production-quality scaffolds, validate with tests, interpret the evidence, and save an artifact reused in the next lab. Completed solutions must not replace the student's implementation exercises.
 
+## Use the APT tutor directly in VS Code
+
+APT includes a workspace custom tutor agent at [`.github/agents/apt-tutor.agent.md`](.github/agents/apt-tutor.agent.md) and a learner-approved checkpoint at [`tutor/progress.yaml`](tutor/progress.yaml).
+
+1. Open this repository's root folder in VS Code, with a compatible authenticated chat provider such as GitHub Copilot.
+2. Open Chat and select **APT Tutor** in the custom-agent dropdown.
+3. Say: **"Resume my lab from tutor/progress.yaml. Preserve my TODOs and plotting calculations; ask one question at a time."**
+4. At the end ask it to **propose** a progress update; approve changes before they are saved.
+
+See the [tutor setup guide](tutor/README.md). This is an on-demand tutor with durable file-based context, not an always-running background service.
+
 ## Research studies
 
 - **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** Five learner Colab **skeletons now committed**, with training/evaluation TODOs. Experiments and measured outcomes remain pending. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
