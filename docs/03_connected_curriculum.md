@@ -5,21 +5,23 @@
 ## Required teaching contract
 Every chapter must have: (1) prerequisite artifact, (2) math and learning goals, (3) student-written implementation exercises, (4) runnable commands, (5) tests and expected output, (6) saved output for the next lab, (7) failure analysis, (8) open-ended research question without a preselected answer. No disconnected math exercises presented as if they were working trainer instrumentation.
 
-## Connected sequence
-| Chapter | Hands-on lab | Input → output | Gate |
-|---|---|---|---|
-| 04 | Canonical evidence model (already committed) | log observations → validated objects | Unit tests |
-| 05 | Ingest toy trainer CSV histories | raw metrics → canonical ExperimentRun | Preserve definitions, time axes, missing values |
-| 06 | **TRL SFTTrainer** on small prompt/completion coding examples | demonstrations → checkpoint, loss logs and baseline eval | Inspect completion-only masks; verify task success |
-| 07 | SFT failure injection | healthy vs altered data/masks → diagnostic observations | Train/validation divergence |
-| 08 | GRPO math with autograd | fixed rewards/logprobs → advantages, ratio, clipping gradients | Predict and reproduce sign changes |
-| 09 | **TRL GRPOTrainer** on small deterministic verifiable *single-turn* coding-like tasks | SFT checkpoint → sampled groups, rewards, metrics | Verify all-tie and mixed-group behavior |
-| 10 | GRPO optimization instrumentation | GRPO steps → clipping, KL, optimizer deltas | Distinguish raw gradient and actual update |
-| 11 | Repo2RLEnv/Harbor task audit | real tasks → inspected oracle/verifier controls | Positive and negative controls |
-| 12 | Real coding-agent rollout interface | Harbor task + agent → trajectories + evidence | Confirm multi-turn trainer compatibility |
-| 13 | SFT→agentic GRPO | checkpoint + tasks → RL training and trusted held-out eval | Matched reproducible runs |
-| 14 | Fault injection and diagnostic probes | controlled fault → blinded diagnosis | Root cause not leaked |
-| 15 | Recovery benchmark | diagnosed issue → tested intervention → held-out gain | Compare against heuristics |
+## Connected sequence — diagnostics and training together
+
+**Implemented:** Chapter 04 experiment representation, one student GRPO clipping Colab. **Planned:** everything else below.
+
+| Order | Hands-on milestone | Evidence/diagnostic skill developed in the same milestone |
+|---|---|---|
+| 1 | [Colab 01 — GRPO clipping toy mechanism](../notebooks/01_grpo_clipping_diagnostics.ipynb) | Implement and plot unclipped vs clipped gradients; distinguish ratio clipping from gradient-norm clipping |
+| 2 | Chapter 04 experiment schema + metric ingestion | Check provenance, missingness and optimizer/rollout step axes |
+| 3 | Real **TRL SFTTrainer** supervised coding examples | Inspect label masks, train/eval loss, gradient flow and trusted evaluation |
+| 4 | [Study 1 — trajectory SFT](07_study1_trajectory_sft.md) | Create selected-action/reflection/replay ablations; test leakage and transfer |
+| 5 | GRPO groups, advantage math and TRL **GRPOTrainer** on deterministic single-turn verifiable tasks | Measure tied groups, clipping, KL, Adam updates and reward alignment |
+| 6 | Repo2RLEnv + Harbor task/verifier audits | Validate oracle and no-op controls; assess difficulty, reward reliability |
+| 7 | Agentic rollouts and validated GRPO integration | Track token masks, stale rollout policy, end-to-end held-out coding success |
+| 8 | Deterministic APT probes, fault injection and recovery benchmark | Compare competing explanations and evaluate corrective interventions |
+| 9 | [Study 2 — specialized diagnostic model](06_study2_specialized_diagnostic_model.md) | TRL SFT of diagnostic decisions; optional verified RLVR; closed-loop outcome benchmark |
+
+**Student ownership:** plot *calculations and selection* are learner TODOs; notebooks provide publication-quality rendering scaffolds, figure export, checks and interpretation prompts. Each experiment should reuse prior evidence artifacts and document the controls, changed variable, predictions, measured outcomes, and next action.
 
 ## Design boundary
 TRL SFTTrainer is for supervised demonstrations, not Harbor task instructions with no solutions. A standard one-turn TRL GRPO reward function is not an execution interface for a multi-step Harbor coding agent. Repo2RLEnv generates/verifies tasks; Harbor runs them; APT diagnoses training and evaluation evidence. We must build or validate a rollout integration before claiming multi-turn GRPO works.
@@ -37,36 +39,6 @@ Implement Chapter 05 ingestion, then the first real TRL SFTTrainer coding lab. T
 - https://huggingface.github.io/Repo2RLEnv/
 
 
-## Revised pedagogy — diagnostics alongside training (2026-10-14)
-**This section supersedes the linear sequencing table above wherever that table postpones diagnostics.** We keep the long-term milestone dependencies, but teach each algorithmic mechanism and its diagnosis in the *same lab*. The earlier table remains historical planning context until full renumbering.
-
-Each lab follows:
-1. Derive the relevant objective and predict a measurable quantity.
-2. Implement the smallest working version with student-completed code.
-3. Run a normal case and capture a reusable artifact.
-4. Inject exactly one controlled failure or perturbation.
-5. Compute a deterministic diagnostic observation with tests.
-6. Form competing explanations and design a discriminating corrective run.
-7. Compare trusted evaluation or mechanism-specific ground truth; note limits of evidence.
-8. Save artifacts and a brief research memo for the next lesson.
-
-| Paired lab | Implementation | Diagnostics created at the same time | Output reused next |
-|---|---|---|---|
-| SFT-A | TRL SFTTrainer, prompt-completion batch, inspect labels | Supervised-token mask coverage and zero-gradient detection | baseline checkpoint + token audit |
-| SFT-B | Healthy vs altered SFT configs/data | train/eval loss divergence and checkpoint comparison | SFT checkpoint lineage |
-| GRPO-A | Group sampling, rewards, advantages | all-tie fraction, per-group reward variance and weak-signal report | group evidence |
-| GRPO-B | Clipped GRPO surrogate in PyTorch; then compare with TRL training logs | positive/negative advantage clip behavior, effective gradients, raw vs clipped cosine | clipping observations + regression tests |
-| GRPO-C | KL penalty and optimizer update inspection | reward/KL-gradient contribution, actual parameter delta, KL definitions | optimizer attribution evidence |
-| GRPO-D | TRL GRPOTrainer on deterministic single-turn coding tasks | combined reward/optimization/held-out metrics | repeatable GRPO baseline |
-| Coding-RL | Repo2RLEnv + Harbor verifier and agentic rollout compatibility | verifier, task difficulty, masking, stale rollout, cross-stage readiness | coding diagnosis case |
-
-**First hands-on diagnostic step:** before a full GPU training run, implement the tiny PyTorch GRPO clipping test and a detector. Keep it small: calculate ratios and clipped/unclipped surrogates; observe and explain the sign of raw vs effective gradient cosine; write one pytest asserting the change. Then reuse the exact detector on exported TRL GRPO metrics. Do not conflate *ratio clipping* with *gradient-norm clipping*.
-
-**Important correction:** A toy ratio-gradient demonstration cannot establish that clipping caused a real held-out regression. Record its status as a verified mechanism in a controlled toy experiment, not a proven production root cause.
-
-The immediate first *real trainer* exercise remains TRL SFTTrainer; it will incorporate masking/gradient diagnostics in the same chapter instead of deferring them.
-
-
 ## Notebook delivery format
 **Colab-first:** Each implemented lab is a versioned \`.ipynb\` file in \`notebooks/\` with small markdown explanations, student TODO code cells, checks, research prompts, and an output artifact. Python tests and reusable diagnostic modules remain in \`tests/\` and \`src/\` respectively. Each notebook should link its prerequisite notebook and save a structured experiment report; no claims of successful execution without actual logs.
 
@@ -76,3 +48,7 @@ The immediate first *real trainer* exercise remains TRL SFTTrainer; it will inco
 ## Study 2: Specialized APT diagnostician
 
 After the deterministic probe engine, Repo2RLEnv coding-task evaluation, and controlled fault-injection benchmark are operational, follow the [Study 2 detailed curriculum](06_study2_specialized_diagnostic_model.md). Its eight Colab-first labs cover evidence datasets, decision schema, TRL SFTTrainer, counterfactual probes, replay ablations, optional diagnostic RLVR, closed-loop evaluation, and unseen-domain testing. All are **planned**, not yet implemented notebooks.
+
+## Study 1: trajectory supervision
+
+See [Study 1 detailed curriculum](07_study1_trajectory_sft.md) for five planned Colab labs using TRL SFTTrainer, selected decisions, reflection/replay ablations and held-out evaluation. None of these notebooks have been implemented yet.
