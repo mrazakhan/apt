@@ -71,3 +71,8 @@ The immediate first *real trainer* exercise remains TRL SFTTrainer; it will inco
 **Colab-first:** Each implemented lab is a versioned \`.ipynb\` file in \`notebooks/\` with small markdown explanations, student TODO code cells, checks, research prompts, and an output artifact. Python tests and reusable diagnostic modules remain in \`tests/\` and \`src/\` respectively. Each notebook should link its prerequisite notebook and save a structured experiment report; no claims of successful execution without actual logs.
 
 **First committed Colab:** [GRPO clipping diagnostic lab](../notebooks/01_grpo_clipping_diagnostics.ipynb). This is a controlled mathematical experiment; SFTTrainer and real GRPO training labs remain planned.
+
+
+## Study 2: Specialized APT diagnostician
+
+After the deterministic probe engine, Repo2RLEnv coding-task evaluation, and controlled fault-injection benchmark are operational, follow the [Study 2 detailed curriculum](06_study2_specialized_diagnostic_model.md). Its eight Colab-first labs cover evidence datasets, decision schema, TRL SFTTrainer, counterfactual probes, replay ablations, optional diagnostic RLVR, closed-loop evaluation, and unseen-domain testing. All are **planned**, not yet implemented notebooks.
