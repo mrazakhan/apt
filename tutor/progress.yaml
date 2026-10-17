@@ -1,0 +1,14 @@
+# Update only with the learner's permission. Not a claim of mastered concepts.
+schema_version: 1
+current_lab: notebooks/01_grpo_clipping_diagnostics.ipynb
+status: not_assessed
+last_confirmed_at: null
+completed_labs: []
+current_objective: "Implement clipping mechanism diagnostics and student-computed plots."
+prerequisite_artifact: null
+artifacts: []
+concepts_to_review: []
+questions_open:
+  - "Have the Lab 01 TODOs and interpretation memo been completed?"
+next_student_task: "Open Lab 01, inspect TODOs, and choose the first learner-owned calculation."
+last_session_note: null
