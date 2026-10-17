@@ -1,6 +1,6 @@
 # Study 2 — Train and Evaluate a Specialized APT Diagnostic Model
 
-**Status: planned curriculum, not implemented or experimentally validated.**
+**Status: eight Colab student skeleton files on `feat/curriculum-skeletons`; experiments remain incomplete and unvalidated.**
 **Prerequisites:** complete the SFTTrainer and GRPOTrainer mechanism/diagnostic labs, Repo2RLEnv + Harbor verification and rollout evaluation, deterministic diagnostic rules, controlled fault injection, and a held-out recovery benchmark.
 
 ## Research question
