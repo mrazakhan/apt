@@ -15,8 +15,8 @@ APT is a **hands-on research and coding curriculum** that incrementally builds a
 
 ## Research studies
 
-- **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** detailed **planned** five-lab curriculum after the first TRL SFTTrainer lab, before agentic GRPO. Its Colab notebooks and experiments are not yet implemented. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
-- **[Study 2 — Specialized APT diagnostic model](docs/06_study2_specialized_diagnostic_model.md):** detailed **planned** eight-lab curriculum. Follows verified coding rollouts, deterministic probes, fault injection and recovery evaluation. Uses TRL SFTTrainer for diagnostic decisions and only considers diagnostic GRPO/RLVR after reward verification.
+- **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** Five learner Colab **skeletons now committed**, with training/evaluation TODOs. Experiments and measured outcomes remain pending. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
+- **[Study 2 — Specialized APT diagnostic model](docs/06_study2_specialized_diagnostic_model.md):** Eight learner Colab **skeletons now committed**, following future verified rollouts and recovery evaluation. They are not executed or validated experiments. Uses TRL SFTTrainer for diagnostic decisions and only considers diagnostic GRPO/RLVR after reward verification.
 
 Study 1 trains/assesses a *coding or research-task policy* from curated examples; Study 2 trains/assesses the *diagnostician* that selects evidence-grounded probes. Their policies, supervision, and held-out benchmarks must remain distinct.
 
@@ -34,11 +34,18 @@ Study 1 trains/assesses a *coding or research-task policy* from curated examples
 
 ## Current implementation status
 
-**Committed:** experiment representation models, their tests, Chapter 04 tutorial, connected curriculum, Repo2RLEnv integration plan, Study 2 curriculum, Lab 01 student Colab, research notes.
+**On `feat/curriculum-skeletons` (proposed PR; not merged to main):**
+- 2 Colab starter notebooks for TRL `SFTTrainer` and single-turn `GRPOTrainer`, with example configurations, disabled execution, explicit student exercises and diagnostic plotting templates.
+- 5 Study 1 and 8 Study 2 learner notebook skeletons. They include mathematical prompts, student TODOs, publication-quality plotting renderers, checklists, and intended saved artifacts.
+- Minimal Python contracts for ATIF-like trajectory ingestion, verified Harbor rollout records, deterministic diagnostic probe suggestions, and synthetic paired fault injection.
+- Unit tests for the basic contracts. **Not yet run in CI or independently verified.**
+- [Implementation status and precise gaps](docs/08_skeleton_implementation_status.md).
 
-**Not yet implemented:** TRL SFTTrainer/GRPOTrainer training runs, the Study 1 Colabs, Study 2 Colabs, real Harbor rollout-to-training bridge, the diagnostic engine, fault-injection benchmark, and migration of the previous Fleet/ATIF trajectory ingestion baseline.
+**Already on main:** experiment schema, experiment-schema tests, connected curriculum docs, research notes, and Colab 01 on GRPO clipping.
 
-Notebook 01 intentionally contains learner TODOs and cannot be run end-to-end without completing them. Tests have been committed, but a passing CI run is **not independently verified**. Avoid interpreting planned experiments as measured outcomes.
+**Still missing / deliberately not claimed:** executed `SFTTrainer` or `GRPOTrainer` jobs, training metrics, verified plot calculations, original Fleet/ATIF baseline migration, actual Harbor SDK integration, multi-turn rollout→policy-gradient updates, validated diagnostic engine/closed-loop recovery and realistic fault-injection benchmark.
+
+**Student ownership:** the coding and diagnostic notebooks are intentionally incomplete. `TODO(student)` and explicit `NotImplementedError` mark the exercises. Start with `notebooks/02_sfttrainer_baseline.ipynb`, then `notebooks/s1_01_trajectory_candidates.ipynb`; GRPO single-turn exploration is `notebooks/03_grpotrainer_verifiable.ipynb`.
 
 ## Local package setup
 
@@ -49,7 +56,7 @@ uv sync --extra dev
 uv run pytest -q
 ```
 
-Dependencies for the later TRL/Harbor labs are not yet installed by the current minimal `pyproject.toml`.
+TRL is installed in its respective Colab notebooks; the core Python package still intentionally has only minimal runtime dependencies. Harbor is not integrated.
 
 ## Project documents and research notes
 
