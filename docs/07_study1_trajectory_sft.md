@@ -1,6 +1,6 @@
 # Study 1 — Trajectory Supervision and Self-Context Distillation
 
-**Status: planned Colab-first curriculum; no Study 1 notebook or training result exists yet.**
+**Status: five student Colab skeletons now committed on `feat/curriculum-skeletons`; no completed Study 1 training result exists yet.**
 
 ## Research objective
 Learn how selected decisions from coding/ML-engineering agent trajectories can form useful SFT supervision, how to evaluate data sufficiency/leakage, and whether reflections and rehearsal improve actual *held-out task success*. This trains the **task-performing model**, not the future APT diagnostician (Study 2).
