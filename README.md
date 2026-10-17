@@ -15,7 +15,7 @@ APT is a **hands-on research and coding curriculum** that incrementally builds a
 
 ## Research studies
 
-- **Study 1 — Trajectory SFT and self-context distillation:** planned after the first TRL SFTTrainer lab, before agentic GRPO. This is currently a **roadmap topic**, not a dedicated implemented Colab or full study curriculum. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
+- **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** detailed **planned** five-lab curriculum after the first TRL SFTTrainer lab, before agentic GRPO. Its Colab notebooks and experiments are not yet implemented. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
 - **[Study 2 — Specialized APT diagnostic model](docs/06_study2_specialized_diagnostic_model.md):** detailed **planned** eight-lab curriculum. Follows verified coding rollouts, deterministic probes, fault injection and recovery evaluation. Uses TRL SFTTrainer for diagnostic decisions and only considers diagnostic GRPO/RLVR after reward verification.
 
 Study 1 trains/assesses a *coding or research-task policy* from curated examples; Study 2 trains/assesses the *diagnostician* that selects evidence-grounded probes. Their policies, supervision, and held-out benchmarks must remain distinct.
@@ -36,7 +36,7 @@ Study 1 trains/assesses a *coding or research-task policy* from curated examples
 
 **Committed:** experiment representation models, their tests, Chapter 04 tutorial, connected curriculum, Repo2RLEnv integration plan, Study 2 curriculum, Lab 01 student Colab, research notes.
 
-**Not yet implemented:** TRL SFTTrainer/GRPOTrainer training runs, the Study 1 Colab/curriculum, Study 2 Colabs, real Harbor rollout-to-training bridge, the diagnostic engine, fault-injection benchmark, and migration of the previous Fleet/ATIF trajectory ingestion baseline.
+**Not yet implemented:** TRL SFTTrainer/GRPOTrainer training runs, the Study 1 Colabs, Study 2 Colabs, real Harbor rollout-to-training bridge, the diagnostic engine, fault-injection benchmark, and migration of the previous Fleet/ATIF trajectory ingestion baseline.
 
 Notebook 01 intentionally contains learner TODOs and cannot be run end-to-end without completing them. Tests have been committed, but a passing CI run is **not independently verified**. Avoid interpreting planned experiments as measured outcomes.
 
@@ -57,6 +57,7 @@ Dependencies for the later TRL/Harbor labs are not yet installed by the current 
 - [Connected curriculum](docs/03_connected_curriculum.md)
 - [Experiment representation](docs/04_experiment_representation.md)
 - [Repo2RLEnv integration plan](docs/05_repo2rlenv_integration_plan.md)
+- [Trajectory SFT / Study 1](docs/07_study1_trajectory_sft.md)
 - [Specialized diagnostician / Study 2](docs/06_study2_specialized_diagnostic_model.md)
 - [Research notes](docs/research_notes/README.md)
 
