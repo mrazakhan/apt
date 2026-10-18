@@ -58,3 +58,8 @@ After the deterministic probe engine, Repo2RLEnv coding-task evaluation, and con
 ## Study 1: trajectory supervision
 
 See [Study 1 detailed curriculum](07_study1_trajectory_sft.md) for five planned Colab labs using TRL SFTTrainer, selected decisions, reflection/replay ablations and held-out evaluation. The five **starter notebook files now exist** on the implementation branch, but their coding exercises, training, and experiments are not completed.
+
+
+## Evidence-first GRPO teaching pattern
+
+Use three progressively distinct data layers: instructor synthetic diagrams, student-owned mechanism verification, then actual TRL runs diagnosed with their available **public** metrics and independent held-out evaluations. Deep per-token loss-path recording is an **optional research extension** and cannot be assumed from callbacks. See [GRPO diagnostics contract](09_grpo_diagram_artifact_contract.md).
