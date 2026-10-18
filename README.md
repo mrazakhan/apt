@@ -13,6 +13,37 @@ APT is a **hands-on research and coding curriculum** that incrementally builds a
 
 **Teaching contract:** For each lab, understand the math, implement important code yourself, generate *your own* diagnostic plots from supplied production-quality scaffolds, validate with tests, interpret the evidence, and save an artifact reused in the next lab. Completed solutions must not replace the student's implementation exercises.
 
+## Use the APT tutor directly in VS Code
+
+APT includes a workspace custom tutor agent at [`.github/agents/apt-tutor.agent.md`](.github/agents/apt-tutor.agent.md) and a learner-approved checkpoint at [`tutor/progress.yaml`](tutor/progress.yaml).
+
+1. Open this repository's root folder in VS Code, with a compatible authenticated chat provider such as GitHub Copilot.
+2. Open Chat and select **APT Tutor** in the custom-agent dropdown.
+3. Say: **"Resume my lab from tutor/progress.yaml. Preserve my TODOs and plotting calculations; ask one question at a time."**
+4. At the end ask it to **propose** a progress update; approve changes before they are saved.
+
+See the [tutor setup guide](tutor/README.md). This is an on-demand tutor with durable file-based context, not an always-running background service.
+
+## Self-contained notebook teaching format
+
+All 16 notebooks on `feat/vscode-apt-tutor` now include an introductory learning sequence with: motivation, domain-specific concepts and mathematical anchors, an illustrative worked example distinct from exercises, learner-owned implementation tasks, diagnostic plot assignments, and an interpretation/research memo. **Lab 01 is more extensively explained; later labs currently use shorter teaching companions.** These additions do not constitute executed training or complete standalone runtime integrations.
+
+The existing TODOs and plot computations remain learner-owned. After any checkout, evaluate readability in Colab/VS Code and run the appropriate notebook checks; **notebook execution remains unverified**.
+
+## GRPO diagram ↔ rollout evidence contract
+
+The [versioned GRPO diagnostic artifact schema](docs/09_grpo_diagram_artifact_contract.md) defines group rewards, per-optimizer-token log probabilities, advantages, clipping context, gradient/step metrics, and provenance. Its [typed Python implementation](src/posttraining_engineer/training/grpo_artifacts.py) derives standard two-sided surrogate terms and active-clip flags, with boundary/missingness tests.
+
+The [single-turn GRPO Colab](notebooks/03_grpotrainer_verifiable.ipynb) teaches public-metric diagnostics and includes a labeled **synthetic fixture** using the same record contract. Real TRL token-level instrumentation and optimizer logprob capture remain **optional advanced work**, not prerequisites for real training or the student-owned diagnostic plots. Actual GRPO training runs and Harbor rollout integration remain **unverified/not implemented**, respectively. See the schema's instrumentation gates before making experimental claims.
+
+## Three layers of GRPO learning
+
+1. **Intuition:** Lab 01 plots synthetic clipped objectives, ratio–advantage regions and the distinction from gradient norm clipping, clearly labeled as illustrative.
+2. **Mechanism:** Lab 01 asks the student to compute gradients, diagnostic arrays, sensitivity sweeps and interpretations in a small controlled PyTorch example.
+3. **Trainer evidence:** Lab 03 uses a configured TRL GRPOTrainer, available public logs, verifier/reward audits and independently measured held-out success; missing metrics are reported as missing. Token-level instrumentation is optional for a specific deeper question.
+
+Do not mistake synthetic figures for real rollouts, or aggregate trainer metrics for a per-token reconstruction.
+
 ## Research studies
 
 - **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** Five learner Colab **skeletons now committed**, with training/evaluation TODOs. Experiments and measured outcomes remain pending. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.

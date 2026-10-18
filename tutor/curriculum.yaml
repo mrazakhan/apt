@@ -1,0 +1,33 @@
+# Compact machine-readable navigation hints; docs/03_connected_curriculum.md is authoritative.
+schema_version: 1
+phases:
+  - id: mechanism
+    labs:
+      - path: notebooks/01_grpo_clipping_diagnostics.ipynb
+        requires: []
+        skill: "Ratio clipping vs gradient norm clipping"
+      - path: notebooks/02_sfttrainer_baseline.ipynb
+        requires: []
+        skill: "TRL SFT masking, train/eval and trustworthy checkpoint comparison"
+      - path: notebooks/03_grpotrainer_verifiable.ipynb
+        requires: [notebooks/01_grpo_clipping_diagnostics.ipynb]
+        skill: "Single-turn verifiable GRPO; no Harbor multistep claims"
+  - id: study1
+    requires: [notebooks/02_sfttrainer_baseline.ipynb]
+    labs:
+      - notebooks/s1_01_trajectory_candidates.ipynb
+      - notebooks/s1_02_supervision_and_leakage.ipynb
+      - notebooks/s1_03_selected_action_sft.ipynb
+      - notebooks/s1_04_reflection_replay_ablation.ipynb
+      - notebooks/s1_05_transfer_evaluation.ipynb
+  - id: study2
+    requires: ["verified Harbor/probe/fault evidence, not currently present"]
+    labs:
+      - notebooks/s2_01_evidence_dataset.ipynb
+      - notebooks/s2_02_diagnostic_decision_schema.ipynb
+      - notebooks/s2_03_diagnostician_sft.ipynb
+      - notebooks/s2_04_counterfactual_probes.ipynb
+      - notebooks/s2_05_curriculum_replay.ipynb
+      - notebooks/s2_06_verified_diagnostic_grpo.ipynb
+      - notebooks/s2_07_closed_loop_recovery.ipynb
+      - notebooks/s2_08_unseen_domain_gate.ipynb

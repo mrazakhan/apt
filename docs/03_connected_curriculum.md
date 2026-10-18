@@ -39,6 +39,12 @@ Complete/validate the ATIF-like adapter against actual Fleet exports, then execu
 - https://huggingface.github.io/Repo2RLEnv/
 
 
+## Self-contained notebook structure (committed on tutor branch)
+
+All sixteen notebooks have concept-first introduction cells, not just coding worksheets. Each begins with an explicit purpose, core definitions or math, a worked example, and a scoped exercise; each asks the learner to compute and interpret diagnostic plots. The first GRPO clipping lab contains a longer derivation; the other fifteen currently have more compact explanations that should be expanded further as the learner progresses.
+
+**No claim of validated end-to-end Colab execution**: real TRL runs, Harbor integration, actual Study 1/2 ablations, and benchmark results remain student/research milestones.
+
 ## Notebook delivery format
 **Colab-first:** Each implemented lab is a versioned \`.ipynb\` file in \`notebooks/\` with small markdown explanations, student TODO code cells, checks, research prompts, and an output artifact. Python tests and reusable diagnostic modules remain in \`tests/\` and \`src/\` respectively. Each notebook should link its prerequisite notebook and save a structured experiment report; no claims of successful execution without actual logs.
 
@@ -52,3 +58,8 @@ After the deterministic probe engine, Repo2RLEnv coding-task evaluation, and con
 ## Study 1: trajectory supervision
 
 See [Study 1 detailed curriculum](07_study1_trajectory_sft.md) for five planned Colab labs using TRL SFTTrainer, selected decisions, reflection/replay ablations and held-out evaluation. The five **starter notebook files now exist** on the implementation branch, but their coding exercises, training, and experiments are not completed.
+
+
+## Evidence-first GRPO teaching pattern
+
+Use three progressively distinct data layers: instructor synthetic diagrams, student-owned mechanism verification, then actual TRL runs diagnosed with their available **public** metrics and independent held-out evaluations. Deep per-token loss-path recording is an **optional research extension** and cannot be assumed from callbacks. See [GRPO diagnostics contract](09_grpo_diagram_artifact_contract.md).
