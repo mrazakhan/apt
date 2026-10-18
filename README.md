@@ -24,6 +24,12 @@ APT includes a workspace custom tutor agent at [`.github/agents/apt-tutor.agent.
 
 See the [tutor setup guide](tutor/README.md). This is an on-demand tutor with durable file-based context, not an always-running background service.
 
+## Self-contained notebook teaching format
+
+All 16 notebooks on `feat/vscode-apt-tutor` now include an introductory learning sequence with: motivation, domain-specific concepts and mathematical anchors, an illustrative worked example distinct from exercises, learner-owned implementation tasks, diagnostic plot assignments, and an interpretation/research memo. **Lab 01 is more extensively explained; later labs currently use shorter teaching companions.** These additions do not constitute executed training or complete standalone runtime integrations.
+
+The existing TODOs and plot computations remain learner-owned. After any checkout, evaluate readability in Colab/VS Code and run the appropriate notebook checks; **notebook execution remains unverified**.
+
 ## Research studies
 
 - **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** Five learner Colab **skeletons now committed**, with training/evaluation TODOs. Experiments and measured outcomes remain pending. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
