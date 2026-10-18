@@ -30,6 +30,12 @@ All 16 notebooks on `feat/vscode-apt-tutor` now include an introductory learning
 
 The existing TODOs and plot computations remain learner-owned. After any checkout, evaluate readability in Colab/VS Code and run the appropriate notebook checks; **notebook execution remains unverified**.
 
+## GRPO diagram ↔ rollout evidence contract
+
+The [versioned GRPO diagnostic artifact schema](docs/09_grpo_diagram_artifact_contract.md) defines group rewards, per-optimizer-token log probabilities, advantages, clipping context, gradient/step metrics, and provenance. Its [typed Python implementation](src/posttraining_engineer/training/grpo_artifacts.py) derives standard two-sided surrogate terms and active-clip flags, with boundary/missingness tests.
+
+The [single-turn GRPO Colab](notebooks/03_grpotrainer_verifiable.ipynb) contains a labeled **synthetic fixture** using the same record contract. Real TRL token-level instrumentation, optimizer logprob capture, plotting-array computations and Harbor rollout integration remain **not implemented**. See the schema's instrumentation gates before making experimental claims.
+
 ## Research studies
 
 - **[Study 1 — Trajectory SFT and self-context distillation](docs/07_study1_trajectory_sft.md):** Five learner Colab **skeletons now committed**, with training/evaluation TODOs. Experiments and measured outcomes remain pending. It concerns demonstration extraction, reflections, replay and controlled SFT ablations.
