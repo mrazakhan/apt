@@ -1,4 +1,24 @@
-# GRPO diagrams ↔ empirical artifacts: versioned contract v1
+# GRPO diagnostics: public metrics first, optional deep token evidence
+
+## Teaching architecture (default)
+
+1. **Visual intuition:** instructor-made synthetic curves and clipping-region diagrams in Lab 01. These are definitions and constructed examples, not trainer results.
+2. **Controlled mechanism:** student-computed differentiable objectives, gradients and diagnostic plots in Lab 01. These test mathematics independently of a large trainer.
+3. **Real experiment:** Lab 03 runs a small single-turn GRPO task when configured by the student, using public TRL logs, reward checks, held-out evaluation and student-produced diagnostic plots. Record available keys; never assume the logger provides per-token tensors.
+
+**Token evidence below is an optional advanced extension, not the gating dependency of Lab 03 or Study 2.** Do not change a trainer's loss methods just to demonstrate clipping.
+
+## Public observable ↔ learner diagnostic map
+
+| Research question | Prefer observable | Decision boundary |
+|---|---|---|
+| Is the reward useful? | reward spread, group reward zero-variance fraction, independent reward audit | low variation suggests testing verifier discrimination; does not prove incorrect reward |
+| Is the loss frequently clipped? | trainer-emitted clipping ratio metrics, if present | compare logged numerator/denominator and step definitions before interpretation |
+| Is optimization drifting? | available KL estimate and checkpoint evaluation | track trend; no causal attribution from trend alone |
+| Is RLVR improving tasks? | held-out verifier success on a fixed, disjoint split | compare to baseline across seeds and matched budgets |
+| Why do token clipping indicators disagree with theory? | optional per-token loss-path evidence from a version-reviewed hook | advanced investigation only |
+
+---
 
 **Implementation:** `src/posttraining_engineer/training/grpo_artifacts.py`. This is a typed schema and theoretical reconstruction, **not yet actual GRPOTrainer instrumentation**. The current toy Lab 01 does not itself yield true LLM rollouts.
 
