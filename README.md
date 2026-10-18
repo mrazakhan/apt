@@ -34,7 +34,15 @@ The existing TODOs and plot computations remain learner-owned. After any checkou
 
 The [versioned GRPO diagnostic artifact schema](docs/09_grpo_diagram_artifact_contract.md) defines group rewards, per-optimizer-token log probabilities, advantages, clipping context, gradient/step metrics, and provenance. Its [typed Python implementation](src/posttraining_engineer/training/grpo_artifacts.py) derives standard two-sided surrogate terms and active-clip flags, with boundary/missingness tests.
 
-The [single-turn GRPO Colab](notebooks/03_grpotrainer_verifiable.ipynb) contains a labeled **synthetic fixture** using the same record contract. Real TRL token-level instrumentation, optimizer logprob capture, plotting-array computations and Harbor rollout integration remain **not implemented**. See the schema's instrumentation gates before making experimental claims.
+The [single-turn GRPO Colab](notebooks/03_grpotrainer_verifiable.ipynb) teaches public-metric diagnostics and includes a labeled **synthetic fixture** using the same record contract. Real TRL token-level instrumentation and optimizer logprob capture remain **optional advanced work**, not prerequisites for real training or the student-owned diagnostic plots. Actual GRPO training runs and Harbor rollout integration remain **unverified/not implemented**, respectively. See the schema's instrumentation gates before making experimental claims.
+
+## Three layers of GRPO learning
+
+1. **Intuition:** Lab 01 plots synthetic clipped objectives, ratio–advantage regions and the distinction from gradient norm clipping, clearly labeled as illustrative.
+2. **Mechanism:** Lab 01 asks the student to compute gradients, diagnostic arrays, sensitivity sweeps and interpretations in a small controlled PyTorch example.
+3. **Trainer evidence:** Lab 03 uses a configured TRL GRPOTrainer, available public logs, verifier/reward audits and independently measured held-out success; missing metrics are reported as missing. Token-level instrumentation is optional for a specific deeper question.
+
+Do not mistake synthetic figures for real rollouts, or aggregate trainer metrics for a per-token reconstruction.
 
 ## Research studies
 
