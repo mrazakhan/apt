@@ -39,3 +39,25 @@ Tutor may demonstrate a **fixed, labeled synthetic fixture** and rendering utili
 - Ratio 1.0 and positive advantage +1: **inside, no clip**.
 
 This last contrast prevents a common error: **outside the ratio band does not imply active clipping**.
+
+
+## Implemented adapter (October 2026)
+
+`src/posttraining_engineer/training/trl_adapter.py` now provides:
+
+- `attach_public_metrics(trainer, output_dir, run_id)`: attaches a standard Transformers TrainerCallback and writes actual `on_log` scalars to `step_metrics.jsonl`; this does not override trainer loss methods.
+- `GRPOLogWriter.append_optimizer_tokens(context, rows)`: records separately captured optimizer-token rows with per-token reconstructed surrogate and missingness checks in `optimizer_tokens.jsonl`.
+
+**Remaining critical gap:** The callback alone cannot expose old/current per-token log probabilities, exact advantages, completion masks and correct group identifiers. Capturing those requires a pinned TRL-version-specific *opt-in* instrumentation point in the loss path. Do not derive token-level clipping from `clip_ratio/region_mean` scalars or blindly treat generated tokens as trained tokens. When `importance_sampling_level="sequence"` or non-standard loss variants are enabled, this v1 token-level reconstruction is **not** the trainer's implemented loss.
+
+### Usage with an actual TRL trainer
+
+```python
+from posttraining_engineer.training.trl_adapter import attach_public_metrics
+
+# After instantiating a real GRPOTrainer:
+writer = attach_public_metrics(trainer, "artifacts/grpo_real_run", "run-001")
+trainer.train()  # requires your own validated task/reward/GPU setup
+```
+
+Run the tests via `python -m pytest -q`. The new GitHub Actions workflow also attempts this validation, but no successful workflow run has been observed as of this change.
